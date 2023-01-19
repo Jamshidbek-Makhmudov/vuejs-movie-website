@@ -4,6 +4,7 @@
 <Items v-for="data in data" :data="data" />
 <!-- v-for buyrugi url larni itteratsiya qilishda ishlatiladi -->
 <!-- v-bind orqali olingan urlni property qilib jonatish mukin -->
+<!-- v-on buyrugi statelar uchun -->
 <!-- v-on ni qisqatrmasi @ edi xuddi shu narsani v-bind uchun : belgi ishlatilinadi -->
 <!-- bind sozini ozi ma'nosi boglash degani -->
 </ul>

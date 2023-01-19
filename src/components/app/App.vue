@@ -8,8 +8,9 @@
 <SearchPanel/>
 <AppFilter/>
   </div>
-  <MovieList :data="data"/>
-  <MovieAddForm/>
+  <MovieList :data="data" />
+
+  <MovieAddForm @createMovie="createMovie"/>
 </div>
   </div>
 </template>
@@ -50,7 +51,14 @@ export default {
         },
       ]
     }
-  }
+  },
+  //method bu state methodni ichida function declaration yoziladi
+  methods:{
+    createMovie(item){
+    this.data.push(item)
+
+    },
+  },
   
 }
 </script>
