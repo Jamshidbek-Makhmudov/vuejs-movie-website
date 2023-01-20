@@ -5,11 +5,14 @@
   <!-- esingdan chiqmasin, bu yerda :dan keyingi nomni ozing berasan  -->
   <!-- ikkinchisi url datani nomi boladi, component ichida ozing bergan nomni ishlatasan -->
   <div class="search-pannel">
-<SearchPanel/>
+<SearchPanel  :updatePanel="updatePanel"/>
 <AppFilter/>
   </div>
-  <MovieList :data="data" />
-
+  <MovieList :data="onSearchPanel(data, searchPanelValue)" @onToggle="onToggle" @onDelete="onDelete"  />
+  <!-- bu yerda emitdan kelgan onlikeni onlike nomi bilan boglab oldik bu yerda emit yoq  -->
+  <!-- chunki biz boshqa parentga jonatmaymiz, qabulgan onLikeni pasga methodsga yozib qoyamiz -->
+<!-- buyerda @onLike childdan kelgan methodga tashlangan follow, "onLike" esa biz qabul qilib yangi nomergan method -->
+<!-- bu methodsni hohlagancha nomlasak boladi -->
   <MovieAddForm @createMovie="createMovie"/>
 </div>
   </div>
@@ -35,21 +38,25 @@ export default {
           name:'Omar',
           viewers:811,
           favourite:false,
-          like:true,
+          like:false,
+          id:1,
         },
         {
           name:'Abu Bakr',
           viewers:911,
           favourite:false,
           like:false,
+          id:2,
         },
         {
           name:'Hobbit',
           viewers:511,
-          favourite:true,
+          favourite:false,
           like:false,
+          id:3,
         },
-      ]
+      ],
+      searchPanelValue:'',
     }
   },
   //method bu state methodni ichida function declaration yoziladi
@@ -58,8 +65,30 @@ export default {
     this.data.push(item)
 
     },
+    onToggle({id,prop}){
+  this.data= this.data.map(item=>{
+        if(item.id===id){
+          return{...item,[prop]:!item[prop]}
+        }
+        return item
+      })
+      //bu yerda biz onLike bn onFavourite method functionlarini birlashtirib onToggle qilib qoydik
+
+    },
+    onDelete(id){
+      this.data=this.data.filter(c=>c.id !==id)
+    },
+    onSearchPanel(kinolarRoyhati, searchPanelValue){
+      if(searchPanelValue.length==0){
+        return kinolarRoyhati
+      }
+      return kinolarRoyhati.filter(c=>c.name.toLowerCase().indexOf(searchPanelValue)> -1)
+    },
+    updatePanel(value){
+this.searchPanelValue=value
+    }
+
   },
-  
 }
 </script>
 <style>

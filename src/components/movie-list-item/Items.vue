@@ -3,18 +3,20 @@
     <li class="list-group-item d-flex "
     :class="[{like:data.like},{favourite:data.favourite}]">
     <div class="inner-label">
-    <span class="list-group-item-label">{{ data.name }}</span>
+    <span @click="$emit('onToggle',{id:data.id, prop:'like'})" class="list-group-item-label">{{ data.name }}</span>
+    <!-- 1-harakat onclickdan boshlanadi, onclick bolgan spanni pasda methodga functionga tengladik -->
+    <!-- pasda esa online nomi bilan id emite orqali parentga jonatdik -->
     </div>
     <div class="inner-input">
     <input type="number" class="list-group-item-input" :value="data.viewers">
     <!-- default value beayotganda ham v-bind qilib beriladi -->
     <!-- ya'ni inputni ichiga dinamik data qoshayotganimizda v-bind qilib ketishimiz kerak -->
     <div class="d-flex justify-content-center align-items-center">
-    <button type="button"  class=" btn-cookie btn-sm">
+    <button type="button"  class=" btn-cookie btn-sm" @click="$emit('onToggle', {id:data.id, prop:'favourite'})">
     <i class="fas fa-cookie"></i>
     </button>
   
-    <button type="button" class=" btn-trash btn-sm">
+    <button type="button" class=" btn-trash btn-sm" @click="$emit('onDelete',data.id)">
     <i class="fas fa-trash"></i></button>
     <i class="fas fa-star"></i>
     </div>
@@ -30,6 +32,13 @@ props:{
         required:true,
     },
 },
+//methodslar reactda statelar bilan bir xil va methodlarni htmlda ishlatish uchun @nomi  qilib ishlatamiz
+methods:{
+    onLike(){
+        this.$emit('onLike', this.data.id)
+
+    }
+}
   
 }
 </script>

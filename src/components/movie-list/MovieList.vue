@@ -1,7 +1,18 @@
 <template lang="">
 <ul class="movie-list list-group" >
 
-<Items v-for="data in data" :data="data" />
+<Items v-for="data in data" :data="data"
+ :key="data.id"
+  @onToggle="$emit('onToggle',$event)" 
+  @onDelete="$emit('onDelete',data.id)"
+ />
+ <!-- ondelete da data.id berilgan lekin shuni ham $event qilib qoysa bolaveradi ikalsi birxil
+  -->
+ <!-- bu yerda $event bersak childan kelgan objectni hammasni ozini ichiga ovoladi -->
+ <!-- buyerda emitdan kelgan onlike nomli id @onLike nomi bilan boglab olib emit orqali yana parentga jonatdik -->
+ <!-- $emit faqat yuborish vazifasini bajaradi -->
+ <!-- bu yerda @onLike <Items/> childdan kelayotgan methodga tashlangan following endi ikalasi boglandi -->
+<!-- biz har doim listlar bilan ishlayotganimizda key atributini berishimiz kerak -->
 <!-- v-for buyrugi url larni itteratsiya qilishda ishlatiladi -->
 <!-- v-bind orqali olingan urlni property qilib jonatish mukin -->
 <!-- v-on buyrugi statelar uchun -->
@@ -18,10 +29,10 @@ export default {
  props:{
   data:{
     type:Array,
+    required:true,
     //nega bu yerda type:Array boldi va <Items/>da Object boldi?
     //javob: chuncki biz buyerda data silom hammasni ovolib childga yana property 
     //qilib jonatib yuborishimiz kerak
-    required:true,
   },
  },
 }

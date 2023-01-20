@@ -1,8 +1,26 @@
 <template >
-<input type="text" class="form-control search-input " placeholder="search movies...">
+<input type="text" class="form-control search-input "
+ placeholder="search movies..." @input="changeHandler" :value="term">
 </template>
 <script>
 export default {
+  props:{
+    updatePanel:{
+      type:Function,
+      required:true,
+    }
+  },
+  data(){
+    return{
+      term:'',
+    }
+  },
+  methods:{
+    changeHandler(e){
+      this.term=e.target.value
+      this.updatePanel(this.term)
+    }
+  }
   
 }
 </script>
