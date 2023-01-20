@@ -57,6 +57,7 @@ export default {
         },
       ],
       searchPanelValue:'',
+      filter:'all',
     }
   },
   //method bu state methodni ichida function declaration yoziladi
@@ -86,6 +87,19 @@ export default {
     },
     updatePanel(value){
 this.searchPanelValue=value
+    },
+    onFilter(arr, filter){
+      switch (filter) {
+        case 'popular':
+          return arr.filter(c=>c.like)
+          case 'most viewed':
+            return arr.filter(c=>c.viewers >500)
+          
+          break;
+      
+        default:
+          break;
+      }
     }
 
   },
@@ -93,7 +107,7 @@ this.searchPanelValue=value
 </script>
 <style>
 .app{
-  padding: 50px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   height: 100vh;
