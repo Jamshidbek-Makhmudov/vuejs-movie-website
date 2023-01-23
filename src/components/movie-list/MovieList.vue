@@ -1,5 +1,6 @@
 <template lang="">
-<ul class="movie-list list-group" >
+
+<ul class="list-group movie-list" >
 
 <Items v-for="data in data" :data="data"
  :key="data.id"
@@ -19,6 +20,7 @@
 <!-- v-on ni qisqatrmasi @ edi xuddi shu narsani v-bind uchun : belgi ishlatilinadi -->
 <!-- bind sozini ozi ma'nosi boglash degani -->
 </ul>
+
 </template>
 <script>
 import Items from '../movie-list-item/Items.vue'
@@ -39,12 +41,12 @@ export default {
 </script>
 <style scoped>
 .movie-list{
-
   margin-top: 2rem;
-  padding: 1.5rem;
-  background-color: #41B883;
+    padding: 1.5rem;
   border-radius: 4px;
-  box-shadow: 15px 15px 15px rgba(0,0,0,0.15);
+  /* background-color: #fcfaf5; */
+  background-color:  #41B883;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
 }
   
 </style>

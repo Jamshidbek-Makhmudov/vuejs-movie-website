@@ -1,11 +1,15 @@
 <template>
+
   <div class="app-info">
    <p class="fs-3 text-uppercase">All Movies: {{ data }}</p>
    <p class="fs-4 text-uppercase"> Watched Movies: {{ dataFavourite }} </p>
   </div>
+
 </template>
 <script>
+
 export default {
+ 
   props:{
     data:{
       type:Number,
@@ -20,7 +24,7 @@ export default {
 </script>
 <style scoped>
 .app-info{
-  padding: 1.5rem;
+    padding: 1.5rem;
   border-radius: 4px;
   /* background-color: #fcfaf5; */
   background-color:  #41B883;

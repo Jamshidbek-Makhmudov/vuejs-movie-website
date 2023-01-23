@@ -118,7 +118,7 @@ this.term=value
    display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 700px;
+  min-height: 900px;
   background-color: #fff;
   padding: 5rem 0;
   /* margin: 0 auto; */

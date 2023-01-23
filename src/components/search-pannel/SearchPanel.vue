@@ -1,6 +1,8 @@
 <template >
-<input type="text" class="form-control search-input "
- placeholder="search movies..." @input="changeHandler" :value="term">
+  <Input class="search-input" v-model="term"  placeholder="search movies..." @input="changeHandler"/>
+<!-- <input type="text" class="form-control search-input "
+ placeholder="search movies..."
+  @input="changeHandler" :value="term"> -->
 </template>
 <script>
 export default {

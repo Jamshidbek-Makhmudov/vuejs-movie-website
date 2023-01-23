@@ -6,26 +6,33 @@
     <!-- formani oziga @submit.pevent yozib qoyish kerak -->
     <!-- xuddin shu narsani pasda addMovie onClick methodiga ham yozsak boladi -->
     <!-- bunda biz addMovie(e){e.preventDefault()} deb yozishimiz kerak boladi -->
-  <input placeholder="type movie?..." type="text"
+    <Input placeholder="type movie?..."  class=" new-movie-label" 
+v-model="name" />
+   <Input type="number" placeholder="how many times watched?"
+   class="new-movie-label" 
+  v-model="viewers"/>
+  <!-- <input placeholder="type movie?..." type="text"
    class="form-control new-movie-label" 
    :value="name"
-   @input="name=$event.target.value"/>
+   @input="name=$event.target.value"/> -->
    <!--   @input="name=$event.target.value" bu kodlar orqlai biz pasda onchange method input ochib pasda yozib tepada ham yozishni oldini olamiz -->
    <!-- vueda methodlar reactda statega teng desak ham boladi. -->
    <!-- bu yerda @ v-onni qisqartmasi, name=$event changeHandleNamega teng -->
    <!-- biz $eventdan foydalansak pasda scriptda qayta qaytda methods yozishdan saqlangan bolamiz -->
-  <input type="number" placeholder="how many times watched?"
+  <!-- <input type="number" placeholder="how many times watched?"
    class="form-control new-movie-label" 
-   :value="viewers" @input="viewers=$event.target.value"/>
-  <button class="btn btn-outline-dark" type="submit" @click="addMovie" >add</button>
+   :value="viewers" @input="viewers=$event.target.value"/> -->
+  <PrimaryBtn class="btn-outline-dark" type="submit" @click="addMovie" >add</PrimaryBtn>
   </form>
   </div>
 </template>
 <script>
+
 //inputlarda reactda ishlamoqchi bolsak ref yani boshqarib boladiagn inputlardan
 //vuejsda esan ikkiyoqlamali lardan foydalamiz vazifasi bir xil
 //script datani ichidagi malumotlarga pasda methoddan this orqali chiqamiz
 export default {
+
   data(){
     return{
       name:'',
