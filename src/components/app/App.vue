@@ -6,9 +6,9 @@
   <!-- ikkinchisi url datani nomi boladi, component ichida ozing bergan nomni ishlatasan -->
   <div class="search-pannel">
 <SearchPanel  :updatePanel="updatePanel"/>
-<AppFilter/>
+<AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter"/>
   </div>
-  <MovieList :data="onSearchPanel(data, searchPanelValue)" @onToggle="onToggle" @onDelete="onDelete"  />
+  <MovieList :data="onFilter(onSearchPanel(data, term),filter)" @onToggle="onToggle" @onDelete="onDelete"  />
   <!-- bu yerda emitdan kelgan onlikeni onlike nomi bilan boglab oldik bu yerda emit yoq  -->
   <!-- chunki biz boshqa parentga jonatmaymiz, qabulgan onLikeni pasga methodsga yozib qoyamiz -->
 <!-- buyerda @onLike childdan kelgan methodga tashlangan follow, "onLike" esa biz qabul qilib yangi nomergan method -->
@@ -56,7 +56,7 @@ export default {
           id:3,
         },
       ],
-      searchPanelValue:'',
+      term:'',
       filter:'all',
     }
   },
@@ -79,28 +79,29 @@ export default {
     onDelete(id){
       this.data=this.data.filter(c=>c.id !==id)
     },
-    onSearchPanel(kinolarRoyhati, searchPanelValue){
-      if(searchPanelValue.length==0){
+    onSearchPanel(kinolarRoyhati, term){
+      if(term.length==0){
         return kinolarRoyhati
       }
-      return kinolarRoyhati.filter(c=>c.name.toLowerCase().indexOf(searchPanelValue)> -1)
-    },
-    updatePanel(value){
-this.searchPanelValue=value
+      return kinolarRoyhati.filter(c=>c.name.toLowerCase().indexOf(term)> -1)
     },
     onFilter(arr, filter){
       switch (filter) {
         case 'popular':
           return arr.filter(c=>c.like)
-          case 'most viewed':
-            return arr.filter(c=>c.viewers >500)
-          
-          break;
-      
+          case 'mostViewers':
+            return arr.filter(c=>c.viewers >500)    
         default:
-          break;
+          return arr
       }
-    }
+    },
+    updatePanel(value){
+this.term=value
+    },
+    updateFilterHandler(filter){
+      this.filter=filter
+    },
+
 
   },
 }
