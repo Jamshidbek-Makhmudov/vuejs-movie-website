@@ -47,7 +47,7 @@ addMovie(){
     viewers:this.viewers,
     favourite:false,
     like:false,
-    id:Date.now(),
+
   }
   this.$emit('createMovie', newMovie)  //boldi parentga ketti
   this.name=''
